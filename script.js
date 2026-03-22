@@ -1,5 +1,10 @@
 const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 const clickSound = document.getElementById('clickSound');
+const playButton = document.getElementById('playButton');
+const videoPlaceholder = document.getElementById('videoPlaceholder');
+const videoWrapper = document.getElementById('videoWrapper');
+const youtubeVideo = document.getElementById('youtubeVideo');
+const videoUrl = 'https://www.youtube.com/embed/BLMcKDqhUvk?autoplay=1&rel=0&modestbranding=1';
 
 function createLines() {
     const bg = document.getElementById('bg');
@@ -15,6 +20,14 @@ function createLines() {
 }
 
 setInterval(createLines, isMobile ? 3000 : 1500);
+
+if (playButton) {
+    playButton.addEventListener('click', function() {
+        youtubeVideo.src = videoUrl;
+        videoPlaceholder.style.display = 'none';
+        videoWrapper.style.display = 'block';
+    });
+}
 
 document.querySelectorAll('.download-btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
